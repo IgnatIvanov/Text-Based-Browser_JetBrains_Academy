@@ -1,3 +1,5 @@
+import argparse
+import os
 
 nytimes_com = r'''
 This New Liquid Is Magnetic, and Mesmerizing
@@ -34,12 +36,42 @@ Twitter and Square Chief Executive Officer Jack Dorsey
  Tuesday, a signal of the strong ties between the Silicon Valley giants.
 """
 
-# write your code here
+def save_page(name, site):
+    file = open(save_dir + '\\' + name, 'w', encoding='utf-8')
+    file.write(site)
+    file.close()
+
+
+def print_page(name):
+    file = open(save_dir + '\\' + name, 'r')
+    print(*file.readlines())
+    file.close()
+
+
+parser = argparse.ArgumentParser()  # Need parser for handling run parameters
+parser.add_argument('current_dir')  # Create positional argument for sites pages directory
+args = parser.parse_args()
+os.makedirs(os.getcwd() + '/' + args.current_dir, exist_ok=True)
+
+
+script_dir = os.getcwd()
+save_dir = os.getcwd() + '\\' + args.current_dir
 
 url = ''
 while url != 'exit':
     url = str(input())
-    if url == 'nytimes.com':
-        print(nytimes_com)
-    elif url == 'bloomberg.com':
-        print(bloomberg_com)
+    try:
+        print_page(url[:url.find('.')])
+    except FileNotFoundError:
+        if '.' not in url:
+            print('Error: Incorrect URL')
+        elif url == 'nytimes.com':
+            print(nytimes_com)
+            save_page(url[:url.find('.')], nytimes_com)
+        elif url == 'bloomberg.com':
+            print(bloomberg_com)
+            save_page(url[:url.find('.')], bloomberg_com)
+        elif url == 'exit':
+            pass
+        else:
+            print('Error: Incorrect URL')

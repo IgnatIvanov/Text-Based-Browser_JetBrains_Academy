@@ -156,6 +156,18 @@ files:
 
     TextBasedBrowserTest().run_tests()
   learner_created: false
+- name: dir-for-files/bloomberg
+  visible: true
+  learner_created: true
+- name: tb_tabs/bloombergtxt
+  visible: true
+  learner_created: true
+- name: tb_tabs/bloomberg
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/79/stages/437/implement#comment
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Sun, 11 Apr 2021 15:23:15 UTC
 record: -1
