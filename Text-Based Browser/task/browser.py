@@ -2,6 +2,8 @@ import argparse
 import requests
 import collections
 import os
+from bs4 import BeautifulSoup
+from colorama import Fore
 
 nytimes_com = r'''
 This New Liquid Is Magnetic, and Mesmerizing
@@ -53,6 +55,21 @@ def print_page(name):
     file.close()
 
 
+def extract_content(url):
+    site_content = ''
+    r = requests.get(url)
+    soup = BeautifulSoup(r.content, 'html.parser')
+    site_content = soup.get_text()
+    site_list = site_content.split('\n')
+    site_content = ''
+    for line in site_list:
+        if line == '':
+            pass
+        else:
+            site_content += line + '\n'
+    return site_content
+
+
 parser = argparse.ArgumentParser()  # Need parser for handling run parameters
 parser.add_argument('current_dir')  # Create positional argument for sites pages directory
 args = parser.parse_args()
@@ -78,7 +95,8 @@ while url != 'exit':
         prev_url = url
     except FileNotFoundError:
         if '.' not in url:
-            print('Error: Incorrect URL')
+            # print('Error: Incorrect URL')
+            print('Incorrect URL')
         elif url == 'exit':
             pass
         else:
@@ -86,21 +104,8 @@ while url != 'exit':
             if url[8:] != 'https://':
                 prefix = 'https://'
             # r = requests.get(prefix + url).content
-            r = requests.get(prefix + url)
-            print(str(r.text))
-            save_page(url[:url.find('.')], str(r.text))
+            # r = requests.get(prefix + url)
+            site_text = extract_content(prefix + url)
+            print(site_text)
+            save_page(url[:url.find('.')], site_text)
             prev_url = url
-        # if '.' not in url:
-        #     print('Error: Incorrect URL')
-        # elif url == 'nytimes.com':
-        #     print(nytimes_com)
-        #     save_page(url[:url.find('.')], nytimes_com)
-        #     prev_url = 'nytimes.com'
-        # elif url == 'bloomberg.com':
-        #     print(bloomberg_com)
-        #     save_page(url[:url.find('.')], bloomberg_com)
-        #     prev_url = 'bloomberg.com'
-        # elif url == 'exit':
-        #     pass
-        # else:
-        #     print('Error: Incorrect URL')
