@@ -1,4 +1,5 @@
 import argparse
+import requests
 import collections
 import os
 
@@ -76,18 +77,30 @@ while url != 'exit':
         print_page(url[:url.find('.')])
         prev_url = url
     except FileNotFoundError:
-        # global prev_url
         if '.' not in url:
             print('Error: Incorrect URL')
-        elif url == 'nytimes.com':
-            print(nytimes_com)
-            save_page(url[:url.find('.')], nytimes_com)
-            prev_url = 'nytimes.com'
-        elif url == 'bloomberg.com':
-            print(bloomberg_com)
-            save_page(url[:url.find('.')], bloomberg_com)
-            prev_url = 'bloomberg.com'
         elif url == 'exit':
             pass
         else:
-            print('Error: Incorrect URL')
+            prefix = ''
+            if url[8:] != 'https://':
+                prefix = 'https://'
+            # r = requests.get(prefix + url).content
+            r = requests.get(prefix + url)
+            print(str(r.text))
+            save_page(url[:url.find('.')], str(r.text))
+            prev_url = url
+        # if '.' not in url:
+        #     print('Error: Incorrect URL')
+        # elif url == 'nytimes.com':
+        #     print(nytimes_com)
+        #     save_page(url[:url.find('.')], nytimes_com)
+        #     prev_url = 'nytimes.com'
+        # elif url == 'bloomberg.com':
+        #     print(bloomberg_com)
+        #     save_page(url[:url.find('.')], bloomberg_com)
+        #     prev_url = 'bloomberg.com'
+        # elif url == 'exit':
+        #     pass
+        # else:
+        #     print('Error: Incorrect URL')

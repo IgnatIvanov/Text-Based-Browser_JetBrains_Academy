@@ -139,6 +139,12 @@ files:
 
     TextBasedBrowserTest().run_tests()
   learner_created: false
+- name: tb_tabs/nytimes
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/79/stages/439/implement#comment
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Sun, 18 Apr 2021 15:14:08 UTC
 record: -1
