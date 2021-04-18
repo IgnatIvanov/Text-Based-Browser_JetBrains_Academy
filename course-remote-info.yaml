@@ -3,7 +3,7 @@ hyperskill_project:
   ide_files: https://stepik.org/media/attachments/lesson/255229/additional_files.json
   is_template_based: false
   use_ide: true
-update_date: Sun, 11 Apr 2021 14:05:24 UTC
+update_date: Sun, 18 Apr 2021 12:11:40 UTC
 stages:
 - id: 436
   step: 7210
@@ -27,10 +27,6 @@ topics:
   0:
   - title: Introduction to operating systems
     theory_id: 9704
-  - title: Command line overview
-    theory_id: 8977
-  - title: Parameters and options
-    theory_id: 9746
   - title: Introduction to Python
     theory_id: 5204
   - title: Overview of the basic program
@@ -55,6 +51,10 @@ topics:
     theory_id: 6065
   - title: Load module
     theory_id: 6019
+  - title: Command line overview
+    theory_id: 8977
+  - title: Parameters and options
+    theory_id: 9746
   - title: Command line arguments
     theory_id: 7981
   - title: Basic data types
@@ -82,6 +82,8 @@ topics:
     theory_id: 5900
   - title: Arguments
     theory_id: 7248
+  - title: Argparse module
+    theory_id: 11389
   - title: Files in Python
     theory_id: 8691
   - title: Reading files
@@ -90,12 +92,10 @@ topics:
     theory_id: 8334
   - title: Context manager
     theory_id: 8702
-  - title: PyCharm basics
-    theory_id: 6193
   - title: os module
     theory_id: 11119
-  - title: Argparse module
-    theory_id: 11389
+  - title: PyCharm basics
+    theory_id: 6193
   - title: Quotes and multi-line strings
     theory_id: 5814
   - title: Escape sequences
@@ -111,8 +111,6 @@ topics:
   2:
   - title: Computer algorithms
     theory_id: 4953
-  - title: Introducing the first algorithm
-    theory_id: 10336
   - title: The big O notation
     theory_id: 4991
   - title: Data structures
